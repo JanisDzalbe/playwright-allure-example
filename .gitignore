@@ -8,4 +8,3 @@ node_modules/
 # Allure
 .allure
 allure-results/
-allure-report/

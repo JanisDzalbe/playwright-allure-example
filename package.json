@@ -1,0 +1,20 @@
+{
+  "name": "playwright-allure",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --config playwright.config.ts",
+    "test:ui": "npx playwright test --ui --config playwright.config.ts",
+    "clean": "rm -rf test-results && rm -rf playwright-report && rm -rf allure-results && rm -rf allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.5.2",
+    "allure-js-commons": "^3.4.1",
+    "allure-playwright": "^3.4.1"
+  }
+}

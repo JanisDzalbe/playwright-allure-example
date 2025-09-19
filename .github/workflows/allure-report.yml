@@ -3,11 +3,6 @@ name: Generate and Publish Allure Report
 
 on:
   workflow_dispatch:
-    inputs:
-      allure-version:
-        description: 'Allure version to use'
-        required: false
-        default: '2.35.1'
 
 jobs:
   generate-report:
@@ -29,7 +24,20 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        # Continue job even if tests fail
+        run: |
+          npx playwright test || true
+
+      - name: Verify if test results exist
+        # Step runs regardless of previous step's status
+        if: success() || failure()
+        run: |
+          if [ -d "test-results" ]; then
+            echo "Found test-results folder - continuing."
+          else
+            echo "No test-results folder - skipping report generation."
+            exit 1
+          fi
         
       - name: Checkout gh-pages branch to get previous history
         uses: actions/checkout@v4

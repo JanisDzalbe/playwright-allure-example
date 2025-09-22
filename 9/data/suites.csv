@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","930","visual comparisons","chromium","Mon Sep 22 07:37:38 UTC 2025","failed","Mon Sep 22 07:37:39 UTC 2025","","example.spec.ts","",""
+"","330","has title","chromium","Mon Sep 22 07:37:32 UTC 2025","passed","Mon Sep 22 07:37:33 UTC 2025","","example.spec.ts","",""
+"","474","get started link","chromium","Mon Sep 22 07:37:34 UTC 2025","passed","Mon Sep 22 07:37:34 UTC 2025","","example.spec.ts","",""

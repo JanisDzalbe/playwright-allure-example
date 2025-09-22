@@ -50,7 +50,7 @@ jobs:
         # specify version 1.13 using commit hash to avoid possible security issues
         uses: simple-elf/allure-report-action@53ebb757a2097edc77c53ecef4d454fc2f2f774c
         with:
-          allure_results: build/allure-results
+          allure_results: allure-results
           allure_report: allure-report
           gh_pages: gh-pages
           allure_history: allure-history

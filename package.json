@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test --config playwright.config.ts",
+    "test:smoke": "npm run test -- --config playwright.config.ts --grep \"example\"",
+    "test:nightly": "npm run test",
     "test:ui": "npx playwright test --ui --config playwright.config.ts",
     "clean": "rm -rf test-results && rm -rf playwright-report && rm -rf allure-results && rm -rf allure-report"
   },

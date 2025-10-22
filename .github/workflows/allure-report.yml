@@ -3,10 +3,22 @@ name: Generate and Publish Allure Report
 
 on:
   workflow_dispatch:
+    inputs:
+      type:
+        description: 'Test type to run (smoke or nightly)'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - nightly
 
 jobs:
   generate-report:
     runs-on: ubuntu-latest
+
+    env:
+      TEST_TYPE: ${{ github.event.inputs.type }}
 
     steps:
       - name: Checkout code
@@ -26,7 +38,7 @@ jobs:
       - name: Run Playwright tests
         # Continue job even if tests fail
         run: |
-          npx playwright test || true
+          npm run test:${{ env.TEST_TYPE }} || true
 
       - name: Verify if test results exist
         # Step runs regardless of previous step's status
@@ -46,6 +58,11 @@ jobs:
           path: gh-pages
         continue-on-error: true
 
+      - name: Restore previous report history
+        run: |
+          mkdir -p allure-history
+          cp -r gh-pages/${{ env.TEST_TYPE }}/history/* allure-history/ || true
+
       - name: Generate Allure Report with History
         # specify version 1.13 using commit hash to avoid possible security issues
         uses: simple-elf/allure-report-action@53ebb757a2097edc77c53ecef4d454fc2f2f774c
@@ -54,6 +71,11 @@ jobs:
           allure_report: allure-report
           gh_pages: gh-pages
           allure_history: allure-history
+
+      - name: Move report to subdirectory
+        run: |
+          mkdir -p gh-pages/${{ env.TEST_TYPE }}
+          cp -r allure-report/* gh-pages/${{ env.TEST_TYPE }}/
 
       - name: Deploy to GitHub Pages
         # specify version 4.0.0 using commit hash to avoid possible security issues

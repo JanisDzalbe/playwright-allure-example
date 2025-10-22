@@ -26,10 +26,10 @@ test('get started link', async ({ page }) => {
 
 test('visual comparisons', async ({ page }) => {
   await allure.tags("playwright-example", "screenshot");
-  // await page.goto(BASE_URL);
+  await page.goto(BASE_URL);
 
   // Change URL to force a visual diff
-  await page.goto(`${BASE_URL}python/`);
+  // await page.goto(`${BASE_URL}python/`);
 
   // Expect the page to have a screenshot that matches the baseline
   await expect(page).toHaveScreenshot({ maxDiffPixels: 100 });

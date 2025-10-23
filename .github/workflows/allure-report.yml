@@ -71,14 +71,14 @@ jobs:
           allure_results: allure-results
           allure_report: allure-report
 
-          # Use subdirectories so each type has its *own* history
-          gh_pages: gh-pages/${{ env.TEST_TYPE }}
-          allure_history: allure-history/${{ env.TEST_TYPE }}
+          # Roots
+          gh_pages: gh-pages
+          allure_history: allure-history
 
           # Make the action generate links under /<type>/...
           subfolder: ${{ env.TEST_TYPE }}
 
-          # Keep only the last 20 reports in this type's history folder
+          # Keep only the last 20 reports per subfolder
           keep_reports: 20
 
       - name: Deploy to GitHub Pages (to /<type>)
@@ -88,9 +88,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
 
-          # Publish only this type's prepared history folder
-          publish_dir: allure-history/${{ env.TEST_TYPE }}
-
-          # Put it under subdirectory on gh-pages, preserving other types
-          destination_dir: ${{ env.TEST_TYPE }}
-          keep_files: true
+          # Publish the WHOLE allure-history root; it already contains /smoke and /nightly
+          publish_dir: allure-history

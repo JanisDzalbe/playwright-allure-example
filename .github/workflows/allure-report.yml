@@ -77,6 +77,9 @@ jobs:
 
           # Make the action generate links under /<type>/...
           subfolder: ${{ env.TEST_TYPE }}
+          
+          # Dynamic title e.g. "Smoke – 2025-10-23"
+          report_name: "${{ env.TEST_TYPE == 'smoke' && 'Smoke' || 'Nightly' }} - ${{ steps.date.outputs.today }}"
 
           # Keep only the last 20 reports per subfolder
           keep_reports: 20

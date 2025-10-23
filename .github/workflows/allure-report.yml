@@ -75,6 +75,9 @@ jobs:
           gh_pages: gh-pages/${{ env.TEST_TYPE }}
           allure_history: allure-history/${{ env.TEST_TYPE }}
 
+          # Make the action generate links under /<type>/...
+          subfolder: ${{ env.TEST_TYPE }}
+
           # Keep only the last 20 reports in this type's history folder
           keep_reports: 20
 

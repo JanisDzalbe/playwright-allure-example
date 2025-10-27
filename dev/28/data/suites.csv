@@ -1,0 +1,2 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","568","login page","chromium","Mon Oct 27 08:01:20 UTC 2025","passed","Mon Oct 27 08:01:21 UTC 2025","","saucedemo.spec.ts","",""

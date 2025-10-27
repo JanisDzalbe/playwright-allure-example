@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       type:
-        description: 'Test type to run (smoke or nightly)'
+        description: 'Test type to run : smoke, nightly or dev (ad-hoc)'
         required: true
         default: smoke
         type: choice
-        options: [smoke, nightly]
+        options: [smoke, nightly, dev]
 
 permissions:
   contents: write  # needed to push to gh-pages
@@ -79,7 +79,7 @@ jobs:
           subfolder: ${{ env.TEST_TYPE }}
           
           # Dynamic title e.g. "Smoke – 2025-10-23"
-          report_name: "${{ env.TEST_TYPE == 'smoke' && 'Smoke' || 'Nightly' }} - ${{ steps.date.outputs.today }}"
+          report_name: "${{ env.TEST_TYPE }} - ${{ steps.date.outputs.today }}"
 
           # Keep only the last 20 reports per subfolder
           keep_reports: 20

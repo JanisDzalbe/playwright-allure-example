@@ -16,6 +16,7 @@ permissions:
 jobs:
   generate-report:
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.56.1-noble
 
     env:
       TEST_TYPE: ${{ inputs.type }}
@@ -37,9 +38,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
 
       - name: Run Playwright tests
         # Continue job even if tests fail
